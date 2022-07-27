@@ -79,5 +79,16 @@ namespace Calculators.Tests
             // Assert
             Assert.Equal(expected, actual, 5);
         }
+
+        [Fact]
+        public void RaiseErrorWhenDividingByZero()
+        {
+            // Arrange
+            Calculator calculator = new Calculator();
+
+            // Act
+            // Assert
+            Assert.Throws<DivideByZeroException>(() => calculator.Div(1, 0));
+        }
     }
 }

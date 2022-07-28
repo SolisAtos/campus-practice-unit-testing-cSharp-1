@@ -17,6 +17,7 @@ namespace Calculators.Tests
             calculatorMock.Setup(a => a.Add(It.IsAny<int>(), It.IsAny<int>()))
                 .Returns((int first, int second) => first + second);
             Series series = new Series(calculatorMock.Object);
+
             int testNumber = 6;
             int expected = 8;
             int actual;
@@ -37,6 +38,7 @@ namespace Calculators.Tests
             calculatorMock.Setup(a => a.Mul(It.IsAny<int>(), It.IsAny<int>()))
                 .Returns((int first, int second) => first * second);
             Series series = new Series(calculatorMock.Object);
+
             int testNumber = 9;
             int expected = 362880;
             int actual;

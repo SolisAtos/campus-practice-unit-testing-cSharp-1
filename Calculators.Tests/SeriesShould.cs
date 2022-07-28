@@ -14,11 +14,8 @@ namespace Calculators.Tests
         {
             // Arrange
             Mock<ICalculator> calculatorMock = new Mock<ICalculator>();
-            calculatorMock.Setup(a => a.Add(5, 3)).Returns(8);
-            calculatorMock.Setup(a => a.Add(3, 2)).Returns(5);
-            calculatorMock.Setup(a => a.Add(2, 1)).Returns(3);
-            calculatorMock.Setup(a => a.Add(1, 1)).Returns(2);
-            calculatorMock.Setup(a => a.Add(1, 0)).Returns(1);
+            calculatorMock.Setup(a => a.Add(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns((int first, int second) => first + second);
             Series series = new Series(calculatorMock.Object);
             int testNumber = 6;
             int expected = 8;
@@ -29,11 +26,7 @@ namespace Calculators.Tests
 
             // Assert
             Assert.Equal(expected, actual);
-            calculatorMock.Verify(a => a.Add(5, 3));
-            calculatorMock.Verify(a => a.Add(3, 2));
-            calculatorMock.Verify(a => a.Add(2, 1));
-            calculatorMock.Verify(a => a.Add(1, 1));
-            calculatorMock.Verify(a => a.Add(1, 0));
+            calculatorMock.Verify(a => a.Add(It.IsAny<int>(), It.IsAny<int>()));
         }
 
         [Fact]
